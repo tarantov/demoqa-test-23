@@ -46,10 +46,10 @@ public class TestRegistationForm {
         $(".react-datepicker__day--009").click();
         //Предмет
         $("#subjectsInput").setValue("B").pressEnter();
-        $("#subjectsInput").setValue("E").pressEnter();
         $(byText("Reading")).click();
         $("#currentAddress").setValue("Some street 1");
         $("#uploadPicture").uploadFromClasspath(imageName);
+        //нужно сделать проверку что фото загружено и отображается название
 
         //Выбрать страну потом город,
         //Клик по селектору, выбор по тексту
@@ -62,6 +62,19 @@ public class TestRegistationForm {
 
         $(".modal-content").shouldBe(visible);
         $("#example-modal-sizes-title-lg").shouldHave(text("Thanks for submitting the form"));
+
+        $("#example-modal-sizes-title-lg").shouldHave(text("Thanks for submitting the form"));
+        $(".table").$(byText("Student Name")).sibling(0).shouldHave(text(firstName + " " + lastName));
+        $(".table").$(byText("Student Email")).sibling(0).shouldHave(text("mike@tarantov.com"));
+        $(".table").$(byText("Gender")).sibling(0).shouldHave(text("Male"));
+        $(".table").$(byText("Mobile")).sibling(0).shouldHave(text("0987654321"));
+        $(".table").$(byText("Date of Birth")).sibling(0).shouldHave(text("09 November,1999"));
+        $(".table").$(byText("Subjects")).sibling(0).shouldHave(text("Biology"));
+        $(".table").$(byText("Hobbies")).sibling(0).shouldHave(text("Reading"));
+        $(".table").$(byText("Picture")).sibling(0).shouldHave(text("Ninja.jpeg"));
+        $(".table").$(byText("Address")).sibling(0).shouldHave(text("Some street 1"));
+        $(".table").$(byText("State and City")).sibling(0).shouldHave(text("NCR Delhi"));
+
         $("#closeLargeModal").click();
     }
 }
