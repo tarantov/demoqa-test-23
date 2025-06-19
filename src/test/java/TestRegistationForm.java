@@ -22,47 +22,31 @@ public class TestRegistationForm {
         Configuration.baseUrl = "https://demoqa.com";
         Configuration.pageLoadStrategy = "eager";
         Configuration.holdBrowserOpen = false;
-        Configuration.timeout = 5000; // default 4000
     }
 
     @Test
-    void FullForm() {
+    void FullFormTest() {
         open("/automation-practice-form");
         $("#firstName").setValue("Mike");
         $("#lastName").setValue("Tarantov");
         $("#userEmail").setValue("mike@tarantov.com");
-        //Пол
-        // <label title for="gender-radio-1" class="custom-control-label">
-        //$("#gender-radio-1").parent().$(byText("Male")).click();
-        $(byText("Male")).click();
+        $("#genterWrapper").$(byText("Male")).click();
         $("#userNumber").setValue("0987654321");
-
-        //Дата, клик по дате
         $("#dateOfBirthInput").click();
-        //$(byText("May")).click();
-        //$(byText("March")).click();
         $(".react-datepicker__month-select").selectOption("November");
         $(".react-datepicker__year-select").selectOption("1999");
         $(".react-datepicker__day--009").click();
-        //Предмет
         $("#subjectsInput").setValue("B").pressEnter();
         $(byText("Reading")).click();
         $("#currentAddress").setValue("Some street 1");
         $("#uploadPicture").uploadFromClasspath(imageName);
-        //нужно сделать проверку что фото загружено и отображается название
-
-        //Выбрать страну потом город,
-        //Клик по селектору, выбор по тексту
-        $("#state").click();
+        $("#stateCity-wrapper #state").click();
         $(byText("NCR")).click();
-        $("#city").click();
+        $("#stateCity-wrapper #city").click();
         $(byText("Delhi")).click();
         $("#submit").click();
 
-
         $(".modal-content").shouldBe(visible);
-        $("#example-modal-sizes-title-lg").shouldHave(text("Thanks for submitting the form"));
-
         $("#example-modal-sizes-title-lg").shouldHave(text("Thanks for submitting the form"));
         $(".table").$(byText("Student Name")).sibling(0).shouldHave(text(firstName + " " + lastName));
         $(".table").$(byText("Student Email")).sibling(0).shouldHave(text("mike@tarantov.com"));
