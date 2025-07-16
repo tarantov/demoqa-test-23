@@ -17,7 +17,7 @@ public class SelenidePage {
     }
 
     @Test
-    void SelenidePagetest() {
+    void SelenidePageTest() {
         open("selenide/selenide");
         $(("#wiki-tab")).click();
         $("#wiki-content").shouldHave(text("Soft assertions"));

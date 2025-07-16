@@ -1,8 +1,10 @@
+
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Configuration;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import pages.RegistrationPage;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.visible;
@@ -26,8 +28,10 @@ public class TestRegistationForm {
 
     @Test
     void FullFormTest() {
-        open("/automation-practice-form");
-        $("#firstName").setValue("Mike");
+        //open("/automation-practice-form");
+        new RegistrationPage().openPage();
+        //$("#firstName").setValue("Mike");
+        new RegistrationPage().setfirstName("Mike");
         $("#lastName").setValue("Tarantov");
         $("#userEmail").setValue("mike@tarantov.com");
         $("#genterWrapper").$(byText("Male")).click();
